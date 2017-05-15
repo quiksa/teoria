@@ -174,14 +174,14 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 }
             }
         }
-        //remove rotulos
+        //remove rotulos a baixo da parda
         for (var z = 0; z < arrayRotulos.length; z++) {
             var item1 = arrayRotulos[z];
             var rotuloRemover = parseInt(item1.charAt(0));
             for (var h = 0; h < removerRotulos.length; h++) {
                 var item2 = removerRotulos[h];
                 if (rotuloRemover === item2) {
-                    arrayRotulos.splice(rotuloRemover, 1);
+                    arrayRotulos.splice(rotuloRemover, removerRotulos.length);
                 }
             }
         }
