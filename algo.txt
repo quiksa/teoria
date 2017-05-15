@@ -1,0 +1,5 @@
+1. Se T entao faca A va para 2 senao faca B va para 3-
+2. Se T entao faca C va para 3 senao faca R va para 4-
+3. Se T entao faca D va para 4 senao faca Y va para 5-
+4. Se T entao faca E va para 5 senao faca F va para 6-
+5. Se T entao faca G va para 1 senao faca H va para 2-

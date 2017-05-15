@@ -1,0 +1,9 @@
+1. se F entao faça A va para 2 senao faça G va para 1-
+2. se F entao faça B va para 1 senao faça G va para 2-
+3. se F entao faça C va para 3 senao faça J va para 3-
+4. se F entao faça D va para 3 senao faça G va para 4-
+5. se F entao faça J va para 1 senao faça G va para 5-
+6. se F entao faça E va para 3 senao faça G va para 1-
+7. se F entao faça F va para 4 senao faça G va para 1-
+8. se F entao faça G va para 5 senao faça G va para 3-
+9. se F entao faça H va para 3 senao faça G va para 2-

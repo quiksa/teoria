@@ -1,0 +1,62 @@
+<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <h1 class="title">Equivalência de Programas</h1>
+</ion-header-bar>
+<ion-content scroll="true">
+    <!--programa 1-->
+    <div class="divOpenfile1"><input class="inputArquivo" type="file" on-read-file="programa1($fileContent)" /></div>
+    <h2 class="passo1" ng-show="listInstrucoesRotuladasP1">Programa 1</h2>
+    <ul class="lista" ng-repeat="instrucao in listInstrucoesRotuladasP1">
+        <li class="item">
+            {{instrucao}}
+        </li>
+    </ul>
+    <h2 class="passo1" ng-show="listInstrucoesRotuladasP1">Passo 1</h2>
+    <ul class="lista" ng-repeat="passo in passo1P1">
+        <li class="item">
+            {{passo}}
+        </li>
+    </ul>
+
+    <h2 class="passo1" ng-show="passo2P1">Passo 2</h2>
+    <ul class="lista" ng-repeat="passo in passo2P1">
+        <li class="item">
+            A{{$index}} = {{passo}}
+        </li>
+    </ul>
+
+    <h2 class="passo1" ng-show="passo3P1">Passo 3</h2>
+    <ul class="lista" ng-repeat="passo in passo3P1">
+        <li class="item">
+            {{passo}}
+        </li>
+    </ul>
+
+    <!--programa 2-->
+    <div ng-show="listInstrucoesRotuladasP1" class="divOpenfile2"><input class="inputArquivo" type="file" on-read-file="programa2($fileContent)" /></div>
+    <h2 class="passo1" ng-show="listInstrucoesRotuladasP2">Programa 2</h2>
+    <ul class="lista" ng-repeat="instrucao in listInstrucoesRotuladasP2">
+        <li class="item">
+            {{instrucao}}
+        </li>
+    </ul>
+    <h2 class="passo1" ng-show="listInstrucoesRotuladasP2">Passo 1</h2>
+    <ul class="lista" ng-repeat="passo in passo1P2">
+        <li class="item">
+            {{passo}}
+        </li>
+    </ul>
+
+    <h2 class="passo1" ng-show="passo2P2">Passo 2</h2>
+    <ul class="lista" ng-repeat="passo in passo2P2">
+        <li class="item">
+            A{{$index}} = {{passo}}
+        </li>
+    </ul>
+
+    <h2 class="passo1" ng-show="passo3P2">Passo 3</h2>
+    <ul class="lista" ng-repeat="passo in passo3P2">
+        <li class="item">
+            {{passo}}
+        </li>
+    </ul>
+</ion-content>
