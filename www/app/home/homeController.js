@@ -287,7 +287,32 @@ angular.module('homeController', []).controller("homeController", function ($sco
     }
 
     //PASSO 4
-    var passo4 = function (rotuloListPrograma1, rotuloListPrograma2) {
+    $scope.passo4 = function () {
+        var rotuloListPrograma1 = $scope.passo3P1;
+        var rotuloListPrograma2 = $scope.passo3P2;
 
+        for (var x = 0; x < rotuloListPrograma1.length; x++) { // remove rotulos iguais
+            console.log('x: ' + x);
+            var element1 = rotuloListPrograma1[x];
+            var index = rotuloListPrograma1.indexOf(element1);
+            for (var y = 1; y = y < rotuloListPrograma1.length; y++) {
+                console.log('y: ' + (y));
+                var element2 = rotuloListPrograma1[y];
+                if (element1 === element2) {
+                    rotuloListPrograma1.splice(index, 1);
+                }
+            }
+        }
+
+        for (var x = 0; x < rotuloListPrograma2.length; x++) { // remove rotulos iguais
+            var element1 = rotuloListPrograma2[x];
+            var index = rotuloListPrograma2.indexOf(element1);
+            for (var y = 0; y < rotuloListPrograma2.length; y++) {
+                var element2 = rotuloListPrograma2[y];
+                if (element1 === element2) {
+                    rotuloListPrograma2.splice(index, 1);
+                }
+            }
+        }
     }
 })
