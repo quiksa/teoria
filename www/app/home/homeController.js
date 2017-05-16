@@ -7,7 +7,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
 
         $scope.listInstrucoesRotuladasP1 = getInstrucoes(array);
         var arrayAux = $scope.listInstrucoesRotuladasP1;
-        parada = arrayAux.length;
+        parada = getParada(arrayAux);
         $scope.passo1P1 = passo1(arrayAux, parada);
         var rotuloList = $scope.passo1P1;
         $scope.passo2P1 = passo2(rotuloList);
@@ -60,6 +60,25 @@ angular.module('homeController', []).controller("homeController", function ($sco
         return arrayRotulos;
     }
 
+    var getParada = function (arrayAux) {
+        var arrayRotulos = [];
+        var maiorRotulo = 0;
+        for (var index = 0; index < arrayAux.length; index++) {
+            var element = arrayAux[index];
+            var rotuloAux = element.split(' ');
+            arrayRotulos.push(rotuloAux[8]);
+            arrayRotulos.push(rotuloAux[14]);
+            if (index === arrayAux.length - 1) {
+                maiorRotulo = parseInt(rotuloAux[0]);
+            }
+        }
+        var maior = arrayRotulos.sort(function (a, b) { return b - a });
+        if (maior[0] > maiorRotulo) {
+            maiorRotulo = parseInt(maior[0]);
+        }
+        return maiorRotulo;
+    }
+
     // PASSO 1
     var passo1 = function name(arrayAux, parada) {
         var arrayPasso1 = [];
@@ -70,13 +89,13 @@ angular.module('homeController', []).controller("homeController", function ($sco
             item.rotuto = parseInt(rotuloAux[0]);
             item.Verdadeiro = parseInt(rotuloAux[8]);
             item.Falso = parseInt(rotuloAux[14]);
-            if (item.Verdadeiro > parada) { // identifica parada lado verdadeiro
+            if (item.Verdadeiro >= parada) { // identifica parada lado verdadeiro
                 item.Verdadeiro = "(parada,&)";
                 arrayPasso1.rotutoParada = item.rotuto;
             } else {
                 item.Verdadeiro = '(' + rotuloAux[5] + ',' + rotuloAux[8] + ')';
             }
-            if (item.Falso > parada) { // identifica parada falso
+            if (item.Falso >= parada) { // identifica parada falso
                 item.Falso = "(parada,&)";
                 arrayPasso1.rotutoParada = item.rotuto;
             } else {
@@ -97,7 +116,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
         var arrayPasso2 = [];
         var stringConcat = "€";
         var stringParada = rotuloList.rotuloParada;
-        var rotuloInicio = rotuloList.rotutoParada - 1;
+        var rotuloInicio = rotuloList.indexOf(stringParada);
         var paradaAux = 0;
         var achouIgual = false;
         var remover = null;
@@ -127,13 +146,25 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 }
                 if (achouIgual) { // apos acabar o for verifica se achou iguais
                     stringConcat = stringConcat.concat(',', array[0]); //adiciona o rotulo de referencia na lista
-                    var stringReversa = stringConcat.split('').reverse().join(''); //inverte a string e adiciona na lista
+                    var itensSttring = stringConcat.split(',');
+                    itensSttring = itensSttring.sort(function (a, b) { return a - b });
+                    var i = itensSttring[0];
+                    itensSttring.splice(i, 1);
+                    itensSttring.push(i);
+                    var stringReversa = itensSttring.toString();
+                    // var stringReversa = stringConcat.split('').reverse().join(''); //inverte a string e adiciona na lista
                     arrayPasso2.push('{' + stringReversa + '}');
                     achouIgual = false;
                     console.log(stringReversa)
                 } else {
                     stringConcat = stringConcat.concat(',', array[0]);
-                    var stringReversa = stringConcat.split('').reverse().join(''); //inverte a string e adiciona na lista
+                    var itensSttring = stringConcat.split(',');
+                    itensSttring = itensSttring.sort(function (a, b) { return a - b });
+                    var i = itensSttring[0];
+                    itensSttring.splice(i, 1);
+                    itensSttring.push(i);
+                    var stringReversa = itensSttring.toString();
+                    // var stringReversa = stringConcat.split('').reverse().join(''); //inverte a string e adiciona na lista
                     arrayPasso2.push('{' + stringReversa + '}');
                     console.log(stringReversa)
                 }
@@ -155,13 +186,26 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 if (index < arrayRotulos.length) { //caso tenha rotulos fora do limite do programa
                     for (var x = index + 1; x < arrayRotulos.length; x++) {
                         var item = arrayRotulos[x]; // pega rotulo do primeiro item abaixo da parada
-                        removerRotulos.push(arrayRotulos.indexOf(item));
-                        var rotuloRemover = item.charAt(0); // pega o rotulo a ser removido
+                        var a = item.split(' ');
+                        a = a[0];
+                        removerRotulos.push(a);
+                        // var rotuloRemover = item.charAt(0); // pega o rotulo a ser removido
+                        var rotuloRemover = item.split(' ');
+                        rotuloRemover = rotuloRemover[0];
                         for (var y = 0; y < arrayRotulos.length; y++) { // percorre a lista para encontrar os rotulos
                             var item2 = arrayRotulos[y];
                             var arrayItens = arrayRotulos[y].split(' ');
-                            var rtV = item2.charAt(5); // rotulo lado verdadeiro
-                            var rtF = item2.charAt(11); // rotulo lado falso
+                            var aux1 = item2.split(' ');
+                            var aux2 = aux1[0].split('');
+                            if (aux2.length > 1) { // rotulos maiores que dois digitos
+                                var rtV = item2.charAt(6); // rotulo lado verdadeiro
+                                rtV = rtV.concat(item2.charAt(7)); // rotulo lado verdadeiro
+                                var rtF = item2.charAt(13); // rotulo lado falso
+                                rtF = rtF.concat(item2.charAt(14)); // rotulo lado falso
+                            } else {
+                                var rtV = item2.charAt(5); // rotulo lado verdadeiro
+                                var rtF = item2.charAt(11); // rotulo lado falso
+                            }
 
                             if (rtV === rotuloRemover) {
                                 var itemSubstituirV = arrayItens[1];
@@ -180,11 +224,28 @@ angular.module('homeController', []).controller("homeController", function ($sco
         //remove rotulos a baixo da parda
         for (var z = 0; z < arrayRotulos.length; z++) {
             var item1 = arrayRotulos[z];
-            var rotuloRemover = parseInt(item1.charAt(0));
+            var aux = item1.split(' ');
+            var i = aux[0].split('');
+            if (i.length > 1) { // numero de dois digitos
+                var rotuloRemover = (item1.charAt(0));
+                rotuloRemover = rotuloRemover.concat(item1.charAt(1));
+                rotuloRemover = parseInt(rotuloRemover);
+            } else {
+                var rotuloRemover = parseInt(item1.charAt(0));
+            }
             for (var h = 0; h < removerRotulos.length; h++) {
-                var item2 = removerRotulos[h];
+                var item2 = parseInt(removerRotulos[h]);
                 if (rotuloRemover === item2) {
-                    arrayRotulos.splice(rotuloRemover, removerRotulos.length);
+                    for (var x = 0; x < arrayRotulos.length; x++) {
+                        var element = arrayRotulos[x];
+                        var indice = arrayRotulos.indexOf(element);
+                        element = element.split(' ');
+                        element = parseInt(element);
+                        if (element === rotuloRemover) {
+                            arrayRotulos.splice(indice, removerRotulos.length);
+                            x = arrayRotulos.length
+                        }
+                    }
                 }
             }
         }
