@@ -59,4 +59,15 @@
             {{passo}}
         </li>
     </ul>
+
+    <h2 class="passo1" ng-show="programasUnidos">Passo 4</h2>
+    <ul class="lista" ng-repeat="rotulo in programasUnidos">
+        <li class="item">
+            {{rotulo}}
+        </li>
+    </ul>
+
+    <button class="button button-dark btnEquivalencia" ng-click="passo4()" ng-show="listInstrucoesRotuladasP2 && listInstrucoesRotuladasP1">
+        Testar Equivalência
+    </button>
 </ion-content>
