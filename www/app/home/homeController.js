@@ -23,14 +23,45 @@ angular.module('homeController', []).controller("homeController", function ($sco
 
         $scope.listInstrucoesRotuladasP2 = getInstrucoes(array);
         var arrayAux = $scope.listInstrucoesRotuladasP2;
-        parada = arrayAux.length;
+        parada = getParada(arrayAux);
         $scope.passo1P2 = passo1(arrayAux, parada);
         var rotuloList = $scope.passo1P2;
         $scope.passo2P2 = passo2(rotuloList);
         var aux = $scope.passo2P2.length - 1;
         $scope.passo2P2.push('A' + aux);
         $scope.passo3P2 = passo3(rotuloList);
+        $scope.programasUnidos = getPasso4($scope.passo3P1, $scope.passo3P2);
     };
+
+    var getPasso4 = function (p1, p2) {
+        var listaPasso4 = [];
+        for (var x = 0; x < p1.length; x++) { // remover string de ciclo
+            var element = p1[x];
+            var indiceLista = p1.indexOf(element);
+            var stringCiclo = 'w: (ciclo, w) (ciclo, w)';
+            if (stringCiclo === element) {
+                p1.splice(indiceLista, 1);
+                x = p1.length;
+            } else {
+                listaPasso4.push(element);
+            }
+        }
+
+        for (var y = 0; y < p2.length; y++) { // remover string de ciclo
+            var element = p2[y];
+            var element = p2[y];
+            var indiceLista = p2.indexOf(element);
+            var stringCiclo = 'w: (ciclo, w) (ciclo, w)';
+            if (stringCiclo === element) {
+                p2.splice(indiceLista, 1);
+                x = p2.length;
+            } else {
+                listaPasso4.push(element);
+            }
+        }
+        listaPasso4.push('w: (ciclo, w) (ciclo, w)');
+        return listaPasso4;
+    }
 
     var getInstrucoes = function (array) {
         var arrayInstrucoesRotuladas = [];
@@ -243,7 +274,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
                         element = parseInt(element);
                         if (element === rotuloRemover) {
                             arrayRotulos.splice(indice, removerRotulos.length);
-                            x = arrayRotulos.length
+                            x = arrayRotulos.length;
                         }
                     }
                 }
@@ -256,7 +287,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
     }
 
     //PASSO 4
-    var passo4 = function (rotuloList) {
+    var passo4 = function (rotuloListPrograma1, rotuloListPrograma2) {
 
     }
 })
