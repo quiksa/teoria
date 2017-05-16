@@ -230,7 +230,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 var rotuloRemover = (item1.charAt(0));
                 rotuloRemover = rotuloRemover.concat(item1.charAt(1));
                 rotuloRemover = parseInt(rotuloRemover);
-            } else {
+            } else { // numero de um digito
                 var rotuloRemover = parseInt(item1.charAt(0));
             }
             for (var h = 0; h < removerRotulos.length; h++) {

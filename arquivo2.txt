@@ -1,5 +1,5 @@
 ﻿10. se F entao faça H va para 11 senao faça G va para 12-
-11. se F entao faça H va para 12 senao faça G va para 15-
+11. se F entao faça H va para 16 senao faça G va para 15-
 12. se F entao faça H va para 10 senao faça J va para 17-
 13. se F entao faça H va para 14 senao faça G va para 15-
 14. se F entao faça J va para 15 senao faça G va para 11-
