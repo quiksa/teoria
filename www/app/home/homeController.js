@@ -147,6 +147,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
         var arrayRotulos = angular.copy(rotuloList);
         arrayRotulos.rotuloParada = rotuloList.rotuloParada;
         var removerRotulos = [];
+        var temSimplificacao = false;
         var stringParada = arrayRotulos.rotuloParada;
         for (var index = 0; index < arrayRotulos.length; index++) { // for para identificar parada
             var element = arrayRotulos[index];
@@ -165,9 +166,11 @@ angular.module('homeController', []).controller("homeController", function ($sco
                             if (rtV === rotuloRemover) {
                                 var itemSubstituirV = arrayItens[1];
                                 arrayRotulos[y] = arrayRotulos[y].replace(itemSubstituirV, '(ciclo,w)');
+                                temSimplificacao = true;
                             } else if (rtF === rotuloRemover) {
                                 var itemSubstituirF = arrayItens[2];
                                 arrayRotulos[y] = arrayRotulos[y].replace(itemSubstituirF, '(ciclo,w)');
+                                temSimplificacao = true;
                             }
                         }
                     }
@@ -185,6 +188,14 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 }
             }
         }
+        if (temSimplificacao) {
+            arrayRotulos.push('w: (ciclo, w) (ciclo, w)');
+        }
         return arrayRotulos;
+    }
+
+    //PASSO 4
+    var passo4 = function (rotuloList) {
+
     }
 })
