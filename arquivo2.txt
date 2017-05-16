@@ -1,8 +1,8 @@
-﻿1. se F entao faça H va para 6 senao faça G va para 1-
-2. se F entao faça H va para 1 senao faça G va para 2-
-3. se F entao faça H va para 3 senao faça J va para 5-
-4. se F entao faça H va para 3 senao faça G va para 2-
-5. se F entao faça J va para 1 senao faça G va para 3-
-6. se F entao faça H va para 4 senao faça G va para 5-
-7. se F entao faça H va para 4 senao faça G va para 1-
-8. se F entao faça H va para 3 senao faça G va para 2-
+﻿10. se F entao faça H va para 11 senao faça G va para 12-
+11. se F entao faça H va para 12 senao faça G va para 15-
+12. se F entao faça H va para 10 senao faça J va para 17-
+13. se F entao faça H va para 14 senao faça G va para 15-
+14. se F entao faça J va para 15 senao faça G va para 11-
+15. se F entao faça H va para 11 senao faça G va para 20-
+16. se F entao faça H va para 13 senao faça G va para 11-
+17. se F entao faça H va para 10 senao faça G va para 13-
