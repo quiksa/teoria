@@ -350,8 +350,8 @@ angular.module('homeController', []).controller("homeController", function ($sco
             }
         }
         if (naosaoequivalentes !== true) {
-            lista.push('w: (ciclo, w) (ciclo, w)');
+            lista.push('Ø');
         }
-        return lista;
+        $scope.listaPasso4 = lista;
     }
 })

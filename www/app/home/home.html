@@ -70,4 +70,12 @@
     <button class="button button-dark btnEquivalencia" ng-click="passo4()" ng-show="listInstrucoesRotuladasP2 && listInstrucoesRotuladasP1">
         Testar Equivalência
     </button>
+
+    <h2 class="passo1" ng-show="listaPasso4">Equivalência</h2>
+    <ul class="lista" ng-repeat="itemLista in listaPasso4">
+        <li class="item">
+            B{{$index}} ={{itemLista}}
+        </li>
+    </ul>
+
 </ion-content>
