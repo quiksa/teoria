@@ -63,7 +63,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
         return listaPasso4;
     }
 
-    var getInstrucoes = function (array) {
+    var getInstrucoes = function (array) { // funcao para retornar todas as instrucoes do programa
         var arrayInstrucoesRotuladas = [];
         for (var index = 0; index < array.length - 1; index++) {
             var element = array[index];
@@ -73,25 +73,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
         return arrayInstrucoesRotuladas;
     }
 
-    var separarRotulos = function (arrayAux) {
-        var arrayRotulos = [];
-        for (var index = 0; index < arrayAux.length; index++) {
-            var element = arrayAux[index];
-            var rotuloAux = element.split(' ');
-            var rotulos = {};
-            rotulos.rotuto = rotuloAux[0];
-            rotulos.teste = rotuloAux[2];
-            rotulos.opV = rotuloAux[5];
-            rotulos.rtV = rotuloAux[8];
-            rotulos.opF = rotuloAux[11];
-            rotulos.rtF = rotuloAux[14];
-            arrayRotulos.push(rotulos);
-            console.log(arrayPasso1)
-        }
-        return arrayRotulos;
-    }
-
-    var getParada = function (arrayAux) {
+    var getParada = function (arrayAux) { // funcao para identificar a parada do programa
         var arrayRotulos = [];
         var maiorRotulo = 0;
         for (var index = 0; index < arrayAux.length; index++) {
@@ -104,7 +86,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
             }
         }
         var maior = arrayRotulos.sort(function (a, b) { return b - a });
-        if (maior[0] > maiorRotulo) {
+        if (maior[0] > maiorRotulo) { // pega o maior rotulo
             maiorRotulo = parseInt(maior[0]);
         }
         return maiorRotulo;
@@ -356,9 +338,10 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 var valor4 = parseInt(b3[1]); // converte para inteiro
                 var einteiro4 = isNaN(valor4); //testa se é numero
 
-                if (einteiro1 === einteiro2 && einteiro3 === einteiro4) {
+                if (einteiro1 === einteiro3 && einteiro2 === einteiro4) {
                     lista.push('{(' + valor1 + ',' + valor3 + '),(' + valor2 + ',' + valor4 + ')}');
                 } else {
+                    var naosaoequivalentes = true;
                     console.log('Não são equivalentes')
                     x = rotuloListPrograma1.length;
                     alert('Rotulos não são equivalentes ' + item1 + ' | ' + item2)
@@ -366,7 +349,9 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 y = rotuloListPrograma2.length;
             }
         }
-
+        if (naosaoequivalentes !== true) {
+            lista.push('w: (ciclo, w) (ciclo, w)');
+        }
         return lista;
     }
 })

@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.teoria533031;
+package com.unisc.teoria;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
