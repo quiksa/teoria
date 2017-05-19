@@ -1,0 +1,33 @@
+/* Empty. Add your own CSS if you like */
+
+.divOpenfile1{
+    background-color:sandybrown;
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.divOpenfile2{
+    background-color: sandybrown;
+    margin-left: 30px;
+    margin-top: 50px;
+    margin-right: 30px;
+}
+
+.inputArquivo{
+    line-height:0px !important;
+}
+
+.lista{
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.passo1{
+    margin-left: 10px;
+}
+
+.btnEquivalencia{
+    margin: 20px;
+}
