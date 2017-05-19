@@ -294,11 +294,16 @@ angular.module('homeController', []).controller("homeController", function ($sco
         for (var x = 0; x < rotuloListPrograma1.length; x++) { // remove rotulos iguais
             console.log('x: ' + x);
             var element1 = rotuloListPrograma1[x];
+            var array = element1.split(' ');
+            var stringItem1 = array[1] + array[2];
             var index = rotuloListPrograma1.indexOf(element1);
-            for (var y = 1; y = y < rotuloListPrograma1.length; y++) {
+            for (var y = 0; y < rotuloListPrograma1.length; y++) {
                 console.log('y: ' + (y));
                 var element2 = rotuloListPrograma1[y];
-                if (element1 === element2) {
+                var array2 = element2.split(' ');
+                var stringItem2 = array2[1] + array2[2];
+                var index2 = rotuloListPrograma1.indexOf(element2);
+                if (stringItem1 === stringItem2 && index !== index2) { //verifica rotulos iguais programa 1
                     rotuloListPrograma1.splice(index, 1);
                 }
             }
@@ -306,10 +311,15 @@ angular.module('homeController', []).controller("homeController", function ($sco
 
         for (var x = 0; x < rotuloListPrograma2.length; x++) { // remove rotulos iguais
             var element1 = rotuloListPrograma2[x];
+            var array = element1.split(' ');
+            var stringItem1 = array[1] + array[2];
             var index = rotuloListPrograma2.indexOf(element1);
             for (var y = 0; y < rotuloListPrograma2.length; y++) {
                 var element2 = rotuloListPrograma2[y];
-                if (element1 === element2) {
+                var array2 = element2.split(' ');
+                var stringItem2 = array2[1] + array2[2];
+                var index2 = rotuloListPrograma2.indexOf(element2);
+                if (stringItem1 === stringItem2 && index !== index2) { //verifica rotulos iguais programa 2
                     rotuloListPrograma2.splice(index, 1);
                 }
             }
