@@ -290,6 +290,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
     $scope.passo4 = function () {
         var rotuloListPrograma1 = $scope.passo3P1;
         var rotuloListPrograma2 = $scope.passo3P2;
+        var lista = [];
 
         for (var x = 0; x < rotuloListPrograma1.length; x++) { // remove rotulos iguais
             console.log('x: ' + x);
@@ -324,5 +325,48 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 }
             }
         }
+        var aux = rotuloListPrograma1[0].split(' '); // priemiro rotulo de cada programa
+        var aux2 = rotuloListPrograma2[0].split(' ');
+        lista.push('{(' + aux[0] + ',' + aux2[0] + '})');
+
+        for (var x = 0; x < rotuloListPrograma1.length; x++) {
+            var item1 = rotuloListPrograma1[x];
+            //lado verdadeiro
+            var a1 = item1.split(' ');
+            var a2 = a1[1].split(','); // quebra string na virgula
+            var valor1 = parseInt(a2[1]); // converte para inteiro
+            var einteiro1 = isNaN(valor1); //testa se é numero
+
+            //lado falso
+            var a3 = a1[2].split(','); // quebra string na virgula
+            var valor2 = parseInt(a3[1]); // converte para inteiro
+            var einteiro2 = isNaN(valor2); //testa se é numero
+
+            for (var y = x; y < rotuloListPrograma2.length; y++) {
+                var item2 = rotuloListPrograma2[y];
+
+                //lado verdadeiro
+                var b1 = item2.split(' ');
+                var b2 = b1[1].split(','); //quebra string na virgula
+                var valor3 = parseInt(b2[1]); // converte para inteiro
+                var einteiro3 = isNaN(valor3); //testa se é numero
+
+                //lado falso
+                var b3 = b1[2].split(','); //quebra string na virgula
+                var valor4 = parseInt(b3[1]); // converte para inteiro
+                var einteiro4 = isNaN(valor4); //testa se é numero
+
+                if (einteiro1 === einteiro2 && einteiro3 === einteiro4) {
+                    lista.push('{(' + valor1 + ',' + valor3 + '),(' + valor2 + ',' + valor4 + ')}');
+                } else {
+                    console.log('Não são equivalentes')
+                    x = rotuloListPrograma1.length;
+                    alert('Rotulos não são equivalentes')
+                }
+                y = rotuloListPrograma2.length;
+            }
+        }
+
+        return lista;
     }
 })
