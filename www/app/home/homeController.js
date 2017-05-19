@@ -7,7 +7,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
 
         $scope.listInstrucoesRotuladasP1 = getInstrucoes(array);
         var arrayAux = $scope.listInstrucoesRotuladasP1;
-        parada = getParada(arrayAux);
+        parada = getParada(arrayAux); // identifica parada rotulo de parada
         $scope.passo1P1 = passo1(arrayAux, parada);
         var rotuloList = $scope.passo1P1;
         $scope.passo2P1 = passo2(rotuloList);
@@ -23,7 +23,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
 
         $scope.listInstrucoesRotuladasP2 = getInstrucoes(array);
         var arrayAux = $scope.listInstrucoesRotuladasP2;
-        parada = getParada(arrayAux);
+        parada = getParada(arrayAux); // identifica parada rotulo de parada
         $scope.passo1P2 = passo1(arrayAux, parada);
         var rotuloList = $scope.passo1P2;
         $scope.passo2P2 = passo2(rotuloList);
@@ -349,9 +349,9 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 y = rotuloListPrograma2.length;
             }
         }
-        if (naosaoequivalentes !== true) {
+        if (naosaoequivalentes !== true) { // se forem programas equivalentes
             lista.push('Ø');
+            $scope.listaPasso4 = lista;
         }
-        $scope.listaPasso4 = lista;
     }
 })
