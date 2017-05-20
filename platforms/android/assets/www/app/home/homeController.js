@@ -2,12 +2,12 @@ angular.module('homeController', []).controller("homeController", function ($sco
     //ler arquivo
     $scope.programa1 = function ($fileContent) { //carrega programa 1
         var list = $fileContent;
-        var array = list.split('-');
+        var array = list.split('-'); // faz quebra de linha pelo item '-' em cada linha
         var parada = null;
 
-        $scope.listInstrucoesRotuladasP1 = getInstrucoes(array);
+        $scope.listInstrucoesRotuladasP1 = getInstrucoes(array); // remover apenas o ultimo item em branco
         var arrayAux = $scope.listInstrucoesRotuladasP1;
-        parada = getParada(arrayAux);
+        parada = getParada(arrayAux); // identifica parada rotulo de parada, o maior valor 
         $scope.passo1P1 = passo1(arrayAux, parada);
         var rotuloList = $scope.passo1P1;
         $scope.passo2P1 = passo2(rotuloList);
@@ -23,7 +23,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
 
         $scope.listInstrucoesRotuladasP2 = getInstrucoes(array);
         var arrayAux = $scope.listInstrucoesRotuladasP2;
-        parada = getParada(arrayAux);
+        parada = getParada(arrayAux); // identifica parada rotulo de parada
         $scope.passo1P2 = passo1(arrayAux, parada);
         var rotuloList = $scope.passo1P2;
         $scope.passo2P2 = passo2(rotuloList);
@@ -77,16 +77,16 @@ angular.module('homeController', []).controller("homeController", function ($sco
         var arrayRotulos = [];
         var maiorRotulo = 0;
         for (var index = 0; index < arrayAux.length; index++) {
-            var element = arrayAux[index];
-            var rotuloAux = element.split(' ');
-            arrayRotulos.push(rotuloAux[8]);
-            arrayRotulos.push(rotuloAux[14]);
+            var element = arrayAux[index]; 
+            var rotuloAux = element.split(' '); // quebra a string em partes por ' '
+            arrayRotulos.push(rotuloAux[8]); // rotulo refernte ao lado verdadeiro
+            arrayRotulos.push(rotuloAux[14]); // rotulo referente ao lado false
             if (index === arrayAux.length - 1) {
-                maiorRotulo = parseInt(rotuloAux[0]);
+                maiorRotulo = parseInt(rotuloAux[0]); // pega o maior rotulo(ultimo) da lista
             }
         }
-        var maior = arrayRotulos.sort(function (a, b) { return b - a });
-        if (maior[0] > maiorRotulo) { // pega o maior rotulo
+        var maior = arrayRotulos.sort(function (a, b) { return b - a }); // ordena do maio para o menor
+        if (maior[0] > maiorRotulo) { // pega o primeiro item(maior rotulo) da lista ja ordenada, e comparada com o ultimo rotulo da lista
             maiorRotulo = parseInt(maior[0]);
         }
         return maiorRotulo;
@@ -102,21 +102,21 @@ angular.module('homeController', []).controller("homeController", function ($sco
             item.rotuto = parseInt(rotuloAux[0]);
             item.Verdadeiro = parseInt(rotuloAux[8]);
             item.Falso = parseInt(rotuloAux[14]);
-            if (item.Verdadeiro >= parada) { // identifica parada lado verdadeiro
-                item.Verdadeiro = "(parada,&)";
-                arrayPasso1.rotutoParada = item.rotuto;
+            if (item.Verdadeiro >= parada) { // identifica parada lado verdadeiro caso o rotulo testado seja maior que a parada encontrada no passo anterior
+                item.Verdadeiro = "(parada,&)"; // atribui o simbolo de parada para o rutulo
+                arrayPasso1.rotutoParada = item.rotuto; // guarda rotulo de parada
             } else {
                 item.Verdadeiro = '(' + rotuloAux[5] + ',' + rotuloAux[8] + ')';
             }
             if (item.Falso >= parada) { // identifica parada falso
-                item.Falso = "(parada,&)";
-                arrayPasso1.rotutoParada = item.rotuto;
+                item.Falso = "(parada,&)"; // atribui o simbolo de parada para o rutulo
+                arrayPasso1.rotutoParada = item.rotuto; // guarda rotulo de parada
             } else {
                 item.Falso = '(' + rotuloAux[11] + ',' + rotuloAux[14] + ')';
             }
             if (item.Verdadeiro === '(parada,&)' || item.Falso === '(parada,&)') {
                 item.rotuloParada = item.rotuto + ' ' + item.Verdadeiro + ' ' + item.Falso;
-                arrayPasso1.rotuloParada = item.rotuloParada;
+                arrayPasso1.rotuloParada = item.rotuloParada; // guarda string do rutulo de parada
             }
             arrayPasso1.push(item.rotuto + ' ' + item.Verdadeiro + ' ' + item.Falso);
             console.log(arrayPasso1)
@@ -149,7 +149,7 @@ angular.module('homeController', []).controller("homeController", function ($sco
                     var item2 = rotuloList[x];
                     var array2 = item2.split(' '); // quebra o item2 em partes
                     var strinConcatenada2 = "";
-                    var itemVerificar2 = strinConcatenada2.concat(array2[1], array2[2]);
+                    var itemVerificar2 = strinConcatenada2.concat(array2[1], array2[2]); // elimina apenas o rotulo inicial posicao 0
 
                     if (itemVerificar1 === itemVerificar2 && array[0] !== array2[0]) { // compara os rotulos sucessores se tiver igual ignorando rotulos iguais
                         achouIgual = true;
@@ -349,9 +349,9 @@ angular.module('homeController', []).controller("homeController", function ($sco
                 y = rotuloListPrograma2.length;
             }
         }
-        if (naosaoequivalentes !== true) {
+        if (naosaoequivalentes !== true) { // se forem programas equivalentes
             lista.push('Ø');
+            $scope.listaPasso4 = lista;
         }
-        $scope.listaPasso4 = lista;
     }
 })
